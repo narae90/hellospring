@@ -3,8 +3,10 @@ package com.example.hellospring.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+// 메소드 단독 매핑
 // @Controller("myController")
 @Controller
 public class HelloController {
@@ -23,5 +25,21 @@ public class HelloController {
 		
 		return mav;
 	}
+	
+	// 문자열을 반환하면 해당 뷰로의 포워딩을 의미한다.
+	@RequestMapping("/hello2")
+	public String hello2() {
+		return "/WEB-INF/views/hello.jsp";
+		
+	}
+	
+	// 문자열을 반환 할 때 직접 응답으로 전송하고 싶을 때
+	// ResponseBody -> MessageConverter를 실행하는 어노테이션
+	@ResponseBody
+	@RequestMapping("/hello3")
+	public String hello3() {
+		return "<h1>문자열 직접 전송</h1>";
+	}
+	
 
 }
